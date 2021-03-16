@@ -1,0 +1,38 @@
+{
+  "name": "aws-generate-events",
+  "version": "0.0.1",
+  "description": "Generates AWS Lambda events",
+  "main": "./dist/index.js",
+  "scripts": {
+    "pretest": "npm run build",
+    "test": "nyc ava --timeout=30s",
+    "lint": "eslint '**/*.[jt]s' --cache",
+    "build": "tsc -p tsconfig.json"
+  },
+  "engines": {
+    "node": ">=10.17.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sparticuz/aws-generate-events.git"
+  },
+  "keywords": [],
+  "author": "Kyle McNally <kyle@kmcnally.net>",
+  "license": "MIT",
+  "types": "./dist/index.d.ts",
+  "bugs": {
+    "url": "https://github.com/Sparticuz/aws-generate-events/issues"
+  },
+  "homepage": "https://github.com/Sparticuz/aws-generate-events",
+  "devDependencies": {
+    "@sparticuz/eslint-config": "^3.4.0",
+    "@types/node": "^14.14.35",
+    "@typescript-eslint/eslint-plugin": "^4.18.0",
+    "@typescript-eslint/parser": "^4.18.0",
+    "ava": "^3.15.0",
+    "eslint": "^7.22.0",
+    "nyc": "^15.1.0",
+    "prettier": "^2.2.1",
+    "typescript": "^4.2.3"
+  }
+}
