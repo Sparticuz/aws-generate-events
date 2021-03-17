@@ -19,8 +19,10 @@ jobs:
         node-version: [10.x, 12.x, 14.x]
 
     steps:
-    - name: Install QPDF
-      run: sudo apt install -y qpdf
+    - name: Tap AWS SAM
+      run: brew tap aws/tap
+    - name: Install AWS SAM
+      run: brew install aws-sam-cli
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
