@@ -34,5 +34,8 @@
     "nyc": "^15.1.0",
     "prettier": "^2.2.1",
     "typescript": "^4.2.3"
+  },
+  "dependencies": {
+    "@types/aws-lambda": "^8.10.72"
   }
 }
