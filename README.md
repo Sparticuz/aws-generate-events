@@ -33,7 +33,7 @@ const generator = require("aws-generate-events").default;
 const body = fs.readFileSync("./test/payloads/sqs.json");
 await generator.sqs.receiveMessage({
   accountId: 5555555,
-  body,
+  body: JSON.stringify(body.toJSON()),
 });
 ```
 
