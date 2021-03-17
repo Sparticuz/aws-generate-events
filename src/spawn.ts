@@ -2,7 +2,7 @@ import { spawn } from "child_process";
 
 export default (callArguments: string[]): Promise<string> => {
   return new Promise((resolve, reject) => {
-    const process = spawn("sam", callArguments);
+    const process = spawn("sam", [ "local", "generate-event", ...callArguments]);
     const stdout: string[] = [];
     const stderr: string[] = [];
     process.stdout.on("data", (data) => {

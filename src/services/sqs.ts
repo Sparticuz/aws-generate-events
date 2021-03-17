@@ -10,8 +10,6 @@ export interface sqsOptions {
 
 const receiveMessage = async (options?: sqsOptions): Promise<string> => {
   const callArguments = [
-    "local",
-    "generate-event",
     "sqs",
     "receive-message"
   ];
