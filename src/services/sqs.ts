@@ -1,5 +1,5 @@
+import type { SQSEvent } from "aws-lambda";
 import execute from "../spawn";
-import { SQSEvent} from "aws-lambda";
 
 export interface sqsOptions {
   accountId: string;
@@ -10,24 +10,24 @@ export interface sqsOptions {
 }
 
 const receiveMessage = async (options?: sqsOptions): Promise<SQSEvent> => {
-  const callArguments = [
-    "sqs",
-    "receive-message"
-  ];
-  if(options?.accountId) {
+  const callArguments = ["sqs", "receive-message"];
+  if (options?.accountId) {
     callArguments.push("--account-id", options.accountId);
   }
-  if(options?.body) {
+  if (options?.body) {
     // We need to escape any double quotes
-    callArguments.push("--body", options.body.replace(/\\([\s\S])|(")/g,"\\$1$2"));
+    callArguments.push(
+      "--body",
+      options.body.replace(/\\([\S\s])|(")/g, "\\$1$2")
+    );
   }
-  if(options?.partition) {
+  if (options?.partition) {
     callArguments.push("--partition", options.partition);
   }
-  if(options?.queueName) {
+  if (options?.queueName) {
     callArguments.push("--queue-name", options.queueName);
   }
-  if(options?.region) {
+  if (options?.region) {
     callArguments.push("--region", options.region);
   }
 
