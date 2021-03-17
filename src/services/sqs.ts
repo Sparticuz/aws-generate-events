@@ -18,7 +18,8 @@ const receiveMessage = async (options?: sqsOptions): Promise<SQSEvent> => {
     callArguments.push("--account-id", options.accountId);
   }
   if(options?.body) {
-    callArguments.push("--body", options.body);
+    // We need to escape any double quotes
+    callArguments.push("--body", options.body.replace(/\\([\s\S])|(")/g,"\\$1$2"));
   }
   if(options?.partition) {
     callArguments.push("--partition", options.partition);
