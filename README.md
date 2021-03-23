@@ -38,6 +38,18 @@ await generator.sqs.receiveMessage({
   body: JSON.stringify(body.toJSON()),
 });
 ```
+Usage Example
+```
+const generator = require("aws-generate-events").default;
+const lambdaHandler = require("../dist/handler");
+
+const event = await generator.sqs.receiveMessage({
+  accountId: 5555555,
+  body: "This is a test!",
+});
+
+lambdaHandler(event);
+```
 
 ## Progress
 Below are all the commands from `sam local generate-event`, as well as what is implemented. If you would like to add an event, please check out `src/services/sqs.ts` for an example, and create a pull request.
