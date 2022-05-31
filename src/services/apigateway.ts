@@ -2,14 +2,13 @@ import type { APIGatewayProxyEvent } from "aws-lambda";
 import execute from "../spawn";
 
 export interface awsProxy {
-  accountId: string;
-  body: string;
-  dnsSuffix: string;
-  method: string;
-  path: string;
-  region: string;
-  resource: string;
-  stage: string;
+  accountId?: string;
+  body?: string;
+  dnsSuffix?: string;
+  method?: string;
+  path?: string;
+  resource?: string;
+  stage?: string;
 }
 
 const awsProxy = async (options?: awsProxy): Promise<APIGatewayProxyEvent> => {
@@ -33,9 +32,6 @@ const awsProxy = async (options?: awsProxy): Promise<APIGatewayProxyEvent> => {
   if (options?.path) {
     callArguments.push("--path", options.path);
   }
-  if (options?.region) {
-    callArguments.push("--region", options.region);
-  }
   if (options?.resource) {
     callArguments.push("--resource", options.resource);
   }
@@ -43,7 +39,21 @@ const awsProxy = async (options?: awsProxy): Promise<APIGatewayProxyEvent> => {
     callArguments.push("--stage", options.stage);
   }
 
-  return JSON.parse(await execute(callArguments)) as APIGatewayProxyEvent;
+  const response = JSON.parse(
+    await execute(callArguments)
+  ) as APIGatewayProxyEvent;
+
+  // Unescape response.body
+  if (response.body) {
+    if (response.isBase64Encoded) {
+      response.body = Buffer.from(
+        Buffer.from(response.body, "base64").toString().replaceAll("\\", "")
+      ).toString("base64");
+    }
+    response.body = response.body.replaceAll("\\", "");
+  }
+
+  return response;
 };
 
 export default {
