@@ -123,8 +123,8 @@ Below are all the commands from `sam local generate-event`, as well as what is i
 - [ ] rekognition
   - [ ] s3-request
 - [ ] s3
-  - [ ] delete
-  - [ ] put
+  - [x] delete
+  - [x] put
 - [ ] sagemaker
   - [ ] ground-truth-annotation-consolidation
   - [ ] ground-truth-pre-human
