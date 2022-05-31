@@ -2,11 +2,11 @@ import type { SQSEvent } from "aws-lambda";
 import execute from "../spawn";
 
 export interface sqsOptions {
-  accountId: string;
-  body: string;
-  partition: string;
-  queueName: string;
-  region: string;
+  accountId?: string;
+  body?: string;
+  partition?: string;
+  queueName?: string;
+  region?: string;
 }
 
 const receiveMessage = async (options?: sqsOptions): Promise<SQSEvent> => {

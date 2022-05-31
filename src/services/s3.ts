@@ -2,10 +2,10 @@ import type { S3Event } from "aws-lambda";
 import execute from "../spawn";
 
 export interface s3Options {
-  bucket: string;
-  key: string;
-  partition: string;
-  region: string;
+  bucket?: string;
+  key?: string;
+  partition?: string;
+  region?: string;
 }
 
 const put = async (options?: s3Options): Promise<S3Event> => {
@@ -45,6 +45,6 @@ const del = async (options?: s3Options): Promise<S3Event> => {
 };
 
 export default {
+  delete: del,
   put,
-  delete: del
 };
