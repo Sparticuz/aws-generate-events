@@ -1,9 +1,0 @@
-{
-  "extends": [
-    "@sparticuz/eslint-config"
-  ],
-  "parserOptions": {
-    "project": "./tsconfig.json"
-  },
-  "rules": {}
-}

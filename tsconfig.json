@@ -24,18 +24,12 @@
     "downlevelIteration": true,
     "strictFunctionTypes": true,
     "strictPropertyInitialization": true,
-    "target": "es2019",
-    "lib": ["ES2019"],
+    "target": "es2021",
+    "lib": ["ES2021"],
     "outDir": "dist",
-    "rootDir": "src",
     "declaration": true,
-    "typeRoots": [
-      "./types",
-      "./node_modules/@types"
-    ]
   },
-  "exclude": [
-    "node_modules",
-    "dist"
+  "include": [
+    "src",
   ]
 }
