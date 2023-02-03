@@ -1,5 +1,4 @@
-import type { SQSEvent } from "aws-lambda";
-import execute from "../spawn";
+import execute from "../spawn.js";
 
 export interface sqsOptions {
   accountId?: string;
@@ -9,7 +8,9 @@ export interface sqsOptions {
   region?: string;
 }
 
-const receiveMessage = async (options?: sqsOptions): Promise<SQSEvent> => {
+const receiveMessage = async (
+  options?: sqsOptions
+): Promise<AWSLambda.SQSEvent> => {
   const callArguments = ["sqs", "receive-message"];
   if (options?.accountId) {
     callArguments.push("--account-id", options.accountId);
@@ -31,7 +32,7 @@ const receiveMessage = async (options?: sqsOptions): Promise<SQSEvent> => {
     callArguments.push("--region", options.region);
   }
 
-  return JSON.parse(await execute(callArguments)) as SQSEvent;
+  return JSON.parse(await execute(callArguments)) as AWSLambda.SQSEvent;
 };
 
 export default {

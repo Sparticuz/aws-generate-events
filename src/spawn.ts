@@ -1,4 +1,4 @@
-import { spawn } from "child_process";
+import { spawn } from "node:child_process";
 
 export default (callArguments: string[]): Promise<string> => {
   return new Promise((resolve, reject) => {
@@ -15,10 +15,10 @@ export default (callArguments: string[]): Promise<string> => {
     });
     process.addListener("error", reject);
     process.on("close", (code) => {
-      if (code !== 0) {
-        reject(stderr.join(","));
-      } else {
+      if (code === 0) {
         resolve(stdout.join(","));
+      } else {
+        reject(stderr.join(","));
       }
     });
   });

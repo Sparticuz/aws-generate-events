@@ -1,6 +1,6 @@
 import test from "ava";
-import fs from "fs";
-import generator from "../src";
+import fs from "node:fs";
+import generator from "../src/index.js";
 
 test("SQS Event", async (t) => {
   const body = fs.readFileSync("./test/payloads/sqs.json");
@@ -8,7 +8,7 @@ test("SQS Event", async (t) => {
     accountId: "5555555",
     body: JSON.stringify(body.toJSON()),
   });
-  t.is(message.Records[0].eventSource, "aws:sqs");
+  t.is(message.Records[0]?.eventSource, "aws:sqs");
 });
 
 test("AWS Proxy", async (t) => {

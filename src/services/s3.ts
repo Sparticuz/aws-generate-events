@@ -1,5 +1,4 @@
-import type { S3Event } from "aws-lambda";
-import execute from "../spawn";
+import execute from "../spawn.js";
 
 export interface s3Options {
   bucket?: string;
@@ -8,7 +7,7 @@ export interface s3Options {
   region?: string;
 }
 
-const put = async (options?: s3Options): Promise<S3Event> => {
+const put = async (options?: s3Options): Promise<AWSLambda.S3Event> => {
   const callArguments = ["s3", "put"];
   if (options?.bucket) {
     callArguments.push("--bucket", options.bucket);
@@ -23,10 +22,10 @@ const put = async (options?: s3Options): Promise<S3Event> => {
     callArguments.push("--region", options.region);
   }
 
-  return JSON.parse(await execute(callArguments)) as S3Event;
+  return JSON.parse(await execute(callArguments)) as AWSLambda.S3Event;
 };
 
-const del = async (options?: s3Options): Promise<S3Event> => {
+const del = async (options?: s3Options): Promise<AWSLambda.S3Event> => {
   const callArguments = ["s3", "delete"];
   if (options?.bucket) {
     callArguments.push("--bucket", options.bucket);
@@ -41,7 +40,7 @@ const del = async (options?: s3Options): Promise<S3Event> => {
     callArguments.push("--region", options.region);
   }
 
-  return JSON.parse(await execute(callArguments)) as S3Event;
+  return JSON.parse(await execute(callArguments)) as AWSLambda.S3Event;
 };
 
 export default {
