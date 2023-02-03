@@ -19,7 +19,7 @@
   "exports": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.build.json",
     "lint": "eslint '**/*.[jt]s' --cache",
     "test": "c8 --all --include=src ava --timeout=30s"
   },
