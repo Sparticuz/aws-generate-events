@@ -17,6 +17,9 @@ jobs:
         node-version: [16.x, 18.x]
 
     steps:
+    - name: Set up Homebrew
+      id: set-up-homebrew
+      uses: Homebrew/actions/setup-homebrew@master
     - name: Tap AWS SAM
       run: brew tap aws/tap
     - name: Install AWS SAM

@@ -1,5 +1,4 @@
-import type { APIGatewayProxyEvent } from "aws-lambda";
-import execute from "../spawn";
+import execute from "../spawn.js";
 
 export interface awsProxy {
   accountId?: string;
@@ -11,7 +10,9 @@ export interface awsProxy {
   stage?: string;
 }
 
-const awsProxy = async (options?: awsProxy): Promise<APIGatewayProxyEvent> => {
+const awsProxy = async (
+  options?: awsProxy
+): Promise<AWSLambda.APIGatewayProxyEvent> => {
   const callArguments = ["apigateway", "aws-proxy"];
   if (options?.accountId) {
     callArguments.push("--account-id", options.accountId);
@@ -41,7 +42,7 @@ const awsProxy = async (options?: awsProxy): Promise<APIGatewayProxyEvent> => {
 
   const response = JSON.parse(
     await execute(callArguments)
-  ) as APIGatewayProxyEvent;
+  ) as AWSLambda.APIGatewayProxyEvent;
 
   // Unescape response.body
   if (response.body) {
