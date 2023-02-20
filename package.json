@@ -38,7 +38,7 @@
     "@rushstack/eslint-patch": "^1.2.0",
     "@sparticuz/eslint-config": "^7.2.0",
     "@tsconfig/node16-strictest-esm": "^1.0.3",
-    "@types/node": "^16.18.11",
+    "@types/node": "^18.14.0",
     "@typescript-eslint/eslint-plugin": "^5.50.0",
     "@typescript-eslint/parser": "^5.50.0",
     "ava": "^5.1.1",
